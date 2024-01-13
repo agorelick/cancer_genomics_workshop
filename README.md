@@ -10,6 +10,11 @@
 
 ## Examine the reference genome
 
+1. What is a reference genome?
+2. Why do we need it?
+3. Are there potential downsides to using a reference genome?
+4. Do the downsides affect us if we are calling _somatic_ mutations?
+
 ## Align raw sequencing data to human reference genome
 ```
 mkdir bams
@@ -36,6 +41,12 @@ samtools view -hb bams/Lun1.sam > bams/Lun1.bam; samtools sort bams/Lun1.bam > b
 samtools view -hb bams/Lun2.sam > bams/Lun2.bam; samtools sort bams/Lun2.bam > bams/Lun2_sorted.bam; samtools index bams/Lun2_sorted.bam
 samtools view -hb bams/Lun3.sam > bams/Lun3.bam; samtools sort bams/Lun3.bam > bams/Lun3_sorted.bam; samtools index bams/Lun3_sorted.bam
 ```
+
+## Call somatic mutations mutations
+
+
+
+
 
 
 
