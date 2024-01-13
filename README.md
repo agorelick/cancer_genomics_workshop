@@ -2,6 +2,17 @@
 
 ## Clone this GitHub repo and install prerequisites
 
+```
+# check what we are going to install
+less naxerova_lab.yml
+
+# import the naxerova_lab environment
+conda env create -f naxerova_lab.yml
+
+# activate it
+conda activate naxerova_lab
+```
+
 ## Examine the raw sequencing data (.fastq files)
 
 1. What does raw Next Generation Sequencing data look like? 
