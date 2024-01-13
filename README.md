@@ -61,8 +61,8 @@ samtools view -hb bams/Lun3.sam > bams/Lun3.bam; samtools sort bams/Lun3.bam > b
 3. Based on IGV (if you had to guess) do either the patient's lung or liver metastases seem more closely related to the locoregional lymph node (LN) metastasis?
 
 
-## Call somatic mutations mutations
-
+## Call somatic mutations in paired tumor/normal mode
+```
 gatk Mutect2 -R GRCh38/genome_chr17_0_10Mb.fa \
         -I bams/PT1_sorted.bam \
         -I bams/PT2_sorted.bam \
@@ -76,8 +76,23 @@ gatk Mutect2 -R GRCh38/genome_chr17_0_10Mb.fa \
         -L chr17:7000000-8000000 \
         -normal "N" \
         -O unfiltered.vcf
-        
+
+# quick look at the output
+less unfiltered.vcf
+```
+1. What does a VCF file show?
+2. Where can you find the number of reads supporting the reference and alternate allele in each sample?
+3. Can you see any mutations that look like they are real (true positives) or artifacts? What information might help?
+
+
+# Apply filters to try to remove false-positive mutations
+```
 gatk FilterMutectCalls -R GRCh38/genome_chr17_0_10Mb.fa -V unfiltered.vcf -O filtered.vcf
+```
+
+## Look at the filtered VCF file 
+
+
 
 
 
