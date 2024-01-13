@@ -58,13 +58,9 @@ bwa mem -t 1 -R '@RG\tID:6\tSM:Lun1' GRCh38/genome_chr17_0_10Mb fastq/Lun1_R1.fa
 bwa mem -t 1 -R '@RG\tID:7\tSM:Lun2' GRCh38/genome_chr17_0_10Mb fastq/Lun2_R1.fastq.gz fastq/Lun2_R2.fastq.gz > bams/Lun2.sam
 bwa mem -t 1 -R '@RG\tID:8\tSM:Lun3' GRCh38/genome_chr17_0_10Mb fastq/Lun3_R1.fastq.gz fastq/Lun3_R2.fastq.gz > bams/Lun3.sam
 ```
-1. What is the difference between a SAM file and a FASTQ file?
-2. Are SAM files compressed?
 
-```
-# look at a SAM file (see: https://en.wikipedia.org/wiki/SAM_(file_format))
-samtools view -h N.sam | less -RNS
-```
+1. What is the difference between a SAM file and a FASTQ file? (see: https://en.wikipedia.org/wiki/SAM_(file_format))
+2. Are SAM files compressed?
 3. Are the reads sorted?
 4. What does the CIGAR field tell us? (https://en.wikipedia.org/wiki/Sequence_alignment#CIGAR_Format) 
 5. Can you find any reads that differ from the reference genome? Can we tell if these are biological differences (e.g. mutations) or technical (e.g. noise)?
