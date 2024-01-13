@@ -1,5 +1,15 @@
 # cancer_genomics_workshop
 
+## Clone this GitHub repo and install prerequisites
+
+## Examine the raw sequencing data (.fastq files)
+
+1. What does raw Next Generation Sequencing data look like? 
+2. What do we actually **want to know** from this data?
+3. What do we need to do to make this data _interpretable_?
+
+## Examine the reference genome
+
 ## Align raw sequencing data to human reference genome
 ```
 mkdir bams
@@ -25,8 +35,8 @@ samtools view -hb bams/Liv1.sam > bams/Liv1.bam; samtools sort bams/Liv1.bam > b
 samtools view -hb bams/Lun1.sam > bams/Lun1.bam; samtools sort bams/Lun1.bam > bams/Lun1_sorted.bam; samtools index bams/Lun1_sorted.bam
 samtools view -hb bams/Lun2.sam > bams/Lun2.bam; samtools sort bams/Lun2.bam > bams/Lun2_sorted.bam; samtools index bams/Lun2_sorted.bam
 samtools view -hb bams/Lun3.sam > bams/Lun3.bam; samtools sort bams/Lun3.bam > bams/Lun3_sorted.bam; samtools index bams/Lun3_sorted.bam
-
 ```
+
 
 
 
