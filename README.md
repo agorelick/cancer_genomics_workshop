@@ -81,7 +81,7 @@ gatk Mutect2 -R GRCh38/genome_chr17_0_10Mb.fa \
 less unfiltered.vcf
 ```
 1. What does a VCF file show?
-2. Where can you find the number of reads supporting the reference and alternate allele in each sample?
+2. Where can you find the number of reads supporting each mutation's reference and alternate allele in each sample?
 3. Can you see any mutations that look like they are real (true positives) or artifacts? What information might help?
 
 
