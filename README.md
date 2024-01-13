@@ -3,7 +3,10 @@
 ## Clone this GitHub repo and install prerequisites
 
 ```
-# check what we are going to install
+# clone the repo to your computer and change directories to this location
+git clone git@github.com:agorelick/cancer_genomics_workshop.git; cd cancer_genomics_workshop
+
+# check what we are going to install ('q' to exit)
 less naxerova_lab.yml
 
 # import the naxerova_lab environment
