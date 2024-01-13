@@ -48,15 +48,15 @@ GRCh38/genome_chr17_0_10Mb.fa
 ## Align raw sequencing data to human reference genome
 ```
 mkdir bams
-bwa mem -t 1 -R '@RG\tID:9\tSM:N\tPL:PacBio' GRCh38/genome_chr17_0_10Mb fastq/N_R1.fastq.gz fastq/N_R2.fastq.gz > bams/N.sam
-bwa mem -t 1 -R '@RG\tID:1\tSM:PT1\tPL:PacBio' GRCh38/genome_chr17_0_10Mb fastq/PT1_R1.fastq.gz fastq/PT1_R2.fastq.gz > bams/PT1.sam
-bwa mem -t 1 -R '@RG\tID:2\tSM:PT2\tPL:PacBio' GRCh38/genome_chr17_0_10Mb fastq/PT2_R1.fastq.gz fastq/PT2_R2.fastq.gz > bams/PT2.sam
-bwa mem -t 1 -R '@RG\tID:3\tSM:PT3\tPL:PacBio' GRCh38/genome_chr17_0_10Mb fastq/PT3_R1.fastq.gz fastq/PT3_R2.fastq.gz > bams/PT3.sam
-bwa mem -t 1 -R '@RG\tID:4\tSM:LN1\tPL:PacBio' GRCh38/genome_chr17_0_10Mb fastq/LN1_R1.fastq.gz fastq/LN1_R2.fastq.gz > bams/LN1.sam
-bwa mem -t 1 -R '@RG\tID:5\tSM:Liv1\tPL:PacBio' GRCh38/genome_chr17_0_10Mb fastq/Liv1_R1.fastq.gz fastq/Liv1_R2.fastq.gz > bams/Liv1.sam
-bwa mem -t 1 -R '@RG\tID:6\tSM:Lun1\tPL:PacBio' GRCh38/genome_chr17_0_10Mb fastq/Lun1_R1.fastq.gz fastq/Lun1_R2.fastq.gz > bams/Lun1.sam
-bwa mem -t 1 -R '@RG\tID:7\tSM:Lun2\tPL:PacBio' GRCh38/genome_chr17_0_10Mb fastq/Lun2_R1.fastq.gz fastq/Lun2_R2.fastq.gz > bams/Lun2.sam
-bwa mem -t 1 -R '@RG\tID:8\tSM:Lun3\tPL:PacBio' GRCh38/genome_chr17_0_10Mb fastq/Lun3_R1.fastq.gz fastq/Lun3_R2.fastq.gz > bams/Lun3.sam
+bwa mem -t 1 -R '@RG\tID:9\tSM:N' GRCh38/genome_chr17_0_10Mb fastq/N_R1.fastq.gz fastq/N_R2.fastq.gz > bams/N.sam
+bwa mem -t 1 -R '@RG\tID:1\tSM:PT1' GRCh38/genome_chr17_0_10Mb fastq/PT1_R1.fastq.gz fastq/PT1_R2.fastq.gz > bams/PT1.sam
+bwa mem -t 1 -R '@RG\tID:2\tSM:PT2' GRCh38/genome_chr17_0_10Mb fastq/PT2_R1.fastq.gz fastq/PT2_R2.fastq.gz > bams/PT2.sam
+bwa mem -t 1 -R '@RG\tID:3\tSM:PT3' GRCh38/genome_chr17_0_10Mb fastq/PT3_R1.fastq.gz fastq/PT3_R2.fastq.gz > bams/PT3.sam
+bwa mem -t 1 -R '@RG\tID:4\tSM:LN1' GRCh38/genome_chr17_0_10Mb fastq/LN1_R1.fastq.gz fastq/LN1_R2.fastq.gz > bams/LN1.sam
+bwa mem -t 1 -R '@RG\tID:5\tSM:Liv1' GRCh38/genome_chr17_0_10Mb fastq/Liv1_R1.fastq.gz fastq/Liv1_R2.fastq.gz > bams/Liv1.sam
+bwa mem -t 1 -R '@RG\tID:6\tSM:Lun1' GRCh38/genome_chr17_0_10Mb fastq/Lun1_R1.fastq.gz fastq/Lun1_R2.fastq.gz > bams/Lun1.sam
+bwa mem -t 1 -R '@RG\tID:7\tSM:Lun2' GRCh38/genome_chr17_0_10Mb fastq/Lun2_R1.fastq.gz fastq/Lun2_R2.fastq.gz > bams/Lun2.sam
+bwa mem -t 1 -R '@RG\tID:8\tSM:Lun3' GRCh38/genome_chr17_0_10Mb fastq/Lun3_R1.fastq.gz fastq/Lun3_R2.fastq.gz > bams/Lun3.sam
 ```
 
 ## Format aligned reads so that variant callers can use them
