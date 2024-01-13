@@ -19,6 +19,15 @@ conda activate naxerova_lab
 ## Examine the raw sequencing data (.fastq files)
 
 1. What does raw Next Generation Sequencing data look like? 
+
+```
+# view the first 10 lines of the compressed data
+head -10 fastq/N_R1.fastq.gz
+
+# view the first 10 lines of uncompressed data
+cat fastq/N_R1.fastq.gz | gunzip | head -10
+```
+
 2. What do we actually **want to know** from this data?
 3. What do we need to do to make this data _interpretable_?
 
