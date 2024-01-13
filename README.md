@@ -1,4 +1,4 @@
-# cancer_genomics_workshop
+# Welcome to Naxerova Lab's Cancer Genomics Workshop!
 
 ## Clone this GitHub repo and install prerequisites
 
