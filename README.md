@@ -38,6 +38,13 @@ cat fastq/N_R1.fastq.gz | gunzip | head -10
 3. Are there potential downsides to using a reference genome?
 4. Do the downsides affect us if we are calling _somatic_ mutations?
 
+```
+# explore the reference genome file
+GRCh38/genome_chr17_0_10Mb.fa
+```
+5. Is the reference genome compressed or uncompressed?
+
+
 ## Align raw sequencing data to human reference genome
 ```
 mkdir bams
