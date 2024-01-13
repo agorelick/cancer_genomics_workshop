@@ -53,10 +53,31 @@ samtools view -hb bams/Lun2.sam > bams/Lun2.bam; samtools sort bams/Lun2.bam > b
 samtools view -hb bams/Lun3.sam > bams/Lun3.bam; samtools sort bams/Lun3.bam > bams/Lun3_sorted.bam; samtools index bams/Lun3_sorted.bam
 ```
 
+
+## Look at aligned sequencing data on IGV
+
+1. Can you find any differences in the patient's genome from the reference genome (e.g. single-nucleotide polymorphisms)? Are they heterozygous or homozygous?
+2. Can you find any somatic mutations? Can we tell if they likely occured either early or late in the patient's cancer?
+3. Based on IGV (if you had to guess) do either the patient's lung or liver metastases seem more closely related to the locoregional lymph node (LN) metastasis?
+
+
 ## Call somatic mutations mutations
 
-
-
+gatk Mutect2 -R GRCh38/genome_chr17_0_10Mb.fa \
+        -I bams/PT1_sorted.bam \
+        -I bams/PT2_sorted.bam \
+        -I bams/PT3_sorted.bam \
+        -I bams/LN1_sorted.bam \
+        -I bams/Liv1_sorted.bam \
+        -I bams/Lun1_sorted.bam \
+        -I bams/Lun2_sorted.bam \
+        -I bams/Lun3_sorted.bam \
+        -I bams/N_sorted.bam \
+        -L chr17:7000000-8000000 \
+        -normal "N" \
+        -O unfiltered.vcf
+        
+gatk FilterMutectCalls -R GRCh38/genome_chr17_0_10Mb.fa -V unfiltered.vcf -O filtered.vcf
 
 
 
