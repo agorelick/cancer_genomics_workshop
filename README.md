@@ -82,6 +82,16 @@ samtools view -hb bams/Lun3.sam > bams/Lun3.bam; samtools sort bams/Lun3.bam > b
 
 ## Look at aligned sequencing data on IGV
 
+```
+# open IGV (Integrative Genomics Viewer) from the command line
+igv
+```
+
+### Instructions
+        1. Select "Human hg38" as the reference genome
+        2. Open the patient's normal bam file (N_sorted.bam) on IGV (File -> Load From File -> Navigate to bams/N_sorted.bam)
+        3. Go to gene TP53 (Type "TP53" in the search bar and click "Go"), then zoom in to view the reads.
+
 1. Can you find any differences in the patient's genome from the reference genome (e.g. single-nucleotide polymorphisms)? Are they heterozygous or homozygous?
 2. Can you find any somatic mutations? Can we tell if they likely occured either early or late in the patient's cancer?
 3. Based on IGV (if you had to guess) do either the patient's lung or liver metastases seem more closely related to the locoregional lymph node (LN) metastasis?
