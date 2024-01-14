@@ -129,8 +129,9 @@ gatk FilterMutectCalls -R GRCh38/genome_chr17_0_10Mb.fa -V unfiltered.vcf -O fil
 ## Look at the filtered VCF file 
 
 
+## Make a heatmap of the mutations' Allele Frequencies in each sample
 
-
+1. 
 
 
 
