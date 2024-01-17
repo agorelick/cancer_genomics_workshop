@@ -3,16 +3,15 @@
 ## Install miniconda on your computer
 
 ```
-conda install anaconda::git
 conda config --add channels bioconda
 conda create --name naxerova_lab
 conda activate naxerova_lab
 
 # if you have an older intel chip mac:
-conda install gatk4 igv samtools
+conda install gatk4 igv samtools git
 
 # if you have a newer M1/M2 mac:
-conda install gatk4 igv
+conda install gatk4 igv git
 conda install nanoporetech::samtools 
 ```
 
