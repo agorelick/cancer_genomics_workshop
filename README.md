@@ -2,11 +2,14 @@
 
 ## Install miniconda on your computer
 
+```
 conda install anaconda::git
 
 conda create --name naxerova_lab
 conda activate naxerova_lab
 conda install bioconda::samtools bioconda::igv bioconda::gatk4
+```
+
 
 ## Clone this GitHub repo and install prerequisites
 
