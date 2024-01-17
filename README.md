@@ -1,5 +1,9 @@
 # Welcome to Naxerova Lab's Cancer Genomics Workshop!
 
+## Install miniconda on your computer
+
+conda install anaconda::git
+
 ## Clone this GitHub repo and install prerequisites
 
 ```
