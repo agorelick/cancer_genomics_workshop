@@ -14,6 +14,10 @@ conda env create -f naxerova_lab.yml
 
 # activate it
 conda activate naxerova_lab
+
+# if you don't already have R installed, install it
+conda install r::r-base
+
 ```
 
 ## Examine the raw sequencing data (.fastq files)
@@ -115,17 +119,53 @@ less unfiltered.vcf
 3. Can you see any mutations that look like they are real (true positives) or artifacts? What information might help?
 
 
-# Apply filters to try to remove false-positive mutations
+## Apply filters to try to remove false-positive mutations
 ```
 gatk FilterMutectCalls -R GRCh38/genome_chr17_0_10Mb.fa -V unfiltered.vcf -O filtered.vcf
+
+# quick look at the output
+less unfiltered.vcf
+```
+1. What are some of the filters to flag potential artifacts/false positive mutations?
+
+
+## Make heatmap and phylogenetic tree
+
+```
+# run the included R script
+Rscript make_heatmap_and_tree.R
 ```
 
-## Look at the filtered VCF file 
 
 
-## Make a heatmap of the mutations' Allele Frequencies in each sample
+## (If there's time) Use Variant Effect Predictor (VEP) to annotate mutations
 
-1. 
+```r
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# export data from VCF file to VEP to annotate variants
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+## load data
+d <- read.csv('filtered.vcf', comment.char='#', sep='\t', header=F)
+
+## extract field names from the header
+txt <- read.csv('filtered.vcf', sep='\n', header=F)[[1]]
+header <- strsplit(grep('#CHROM', txt, value=T),'\t')[[1]]
+header[1] <- 'CHROM'
+names(d) <- header
+
+## subset for PASS mutations
+d <- d[d$FILTER=='PASS',]
+
+## prepare input data for VEP
+d$dot <- '.'
+d$ShortVariantID <- paste0(d$CHROM,':',d$REF,d$POS,d$ALT)
+out <- d[,c('CHROM','POS','ShortVariantID','REF','ALT','dot','dot','dot')]
+write.table(out, file='data_for_vep.vcf', sep = " ", quote = F, row.names = F, col.names=F)
+```
+
+Upload the data to VEP (https://useast.ensembl.org/Tools/VEP)
+
 
 
 
