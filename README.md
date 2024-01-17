@@ -3,6 +3,7 @@
 ## Install miniconda on your computer
 
 ```
+# after conda is installed:
 conda config --add channels bioconda
 conda create --name naxerova_lab
 conda activate naxerova_lab
