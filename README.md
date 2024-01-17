@@ -4,9 +4,9 @@
 
 ```
 # after conda is installed:
-conda config --add channels bioconda
 conda create --name naxerova_lab
 conda activate naxerova_lab
+conda config --add channels bioconda
 
 # if you have an older intel chip mac:
 conda install gatk4 igv samtools git
