@@ -1,0 +1,37 @@
+name: naxerova_lab
+channels:
+  - bioconda
+  - defaults
+dependencies:
+  - bwa=0.7.17=h188c3c3_8
+  - bzip2=1.0.8=h1de35cc_0
+  - c-ares=1.19.1=h6c40b1e_0
+  - ca-certificates=2023.12.12=hecd8cb5_0
+  - gatk4=4.3.0.0=py36hdfd78af_0
+  - gdbm=1.18=hdccc71a_4
+  - htslib=1.13=hc38c3fb_0
+  - igv=2.16.2=hdfd78af_0
+  - krb5=1.19.2=hcd88c3b_0
+  - libcurl=7.87.0=ha585b31_0
+  - libcxx=14.0.6=h9765a3e_0
+  - libdeflate=1.17=hb664fd8_1
+  - libedit=3.1.20210714=h9ed2024_0
+  - libev=4.33=h9ed2024_1
+  - libffi=3.2.1=1
+  - libnghttp2=1.52.0=h1c88b7d_1
+  - libssh2=1.10.0=hdb2fb19_2
+  - ncurses=6.2=h0a44026_1
+  - openjdk=11.0.13=h8346a28_0
+  - openssl=1.1.1w=hca72f7f_0
+  - perl=5.34.0=h435f0c2_2
+  - pip=23.3.1=py38hecd8cb5_0
+  - python=3.8.2=hc70fcce_0
+  - readline=8.1=h9ed2024_0
+  - samtools=1.13=h7596a89_0
+  - setuptools=68.0.0=py38hecd8cb5_0
+  - sqlite=3.40.1=h880c91c_0
+  - tk=8.6.12=h5d9f67b_0
+  - wheel=0.41.2=py38hecd8cb5_0
+  - xz=5.2.10=h6c40b1e_1
+  - zlib=1.2.13=h4dc903c_0
+prefix: /Users/alexgorelick/opt/anaconda3/envs/naxerova_lab
