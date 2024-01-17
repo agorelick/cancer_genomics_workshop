@@ -5,12 +5,16 @@
 ```
 conda install anaconda::git
 conda config --add channels bioconda
-
 conda create --name naxerova_lab
 conda activate naxerova_lab
-conda install bioconda::samtools bioconda::igv bioconda::gatk4
-```
 
+# if you have an older intel chip mac:
+conda install gatk4 igv samtools
+
+# if you have a newer M1/M2 mac:
+conda install gatk4 igv
+conda install nanoporetech::samtools 
+```
 
 ## Clone this GitHub repo and install prerequisites
 
