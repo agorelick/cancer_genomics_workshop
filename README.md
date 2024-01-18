@@ -2,8 +2,12 @@
 
 ## Install miniconda on your computer
 
+## Install prerequisite software into a new conda environment
+
+Open a Terminal (Go -> Utilities -> Terminal), then run the following commands:
+
 ```
-# after conda is installed:
+# After conda is installed, create a new conda environment for this workshop:
 conda create --name naxerova_lab
 conda activate naxerova_lab
 conda config --add channels bioconda
@@ -16,26 +20,11 @@ conda install gatk4 igv git
 conda install nanoporetech::samtools nanoporetech::bwa
 ```
 
-## Clone this GitHub repo and install prerequisites
-
-Open a Terminal (Go -> Utilities -> Terminal), then run the following commands:
+## Clone this GitHub repo to access raw data and scripts
 
 ```
 # clone the repo to your computer and change directories to this location
 git clone https://github.com/agorelick/cancer_genomics_workshop.git; cd cancer_genomics_workshop
-
-# check what we are going to install ('q' to exit)
-less naxerova_lab.yml
-
-# import the naxerova_lab environment
-conda env create -f naxerova_lab.yml
-
-# activate it
-conda activate naxerova_lab
-
-# if you don't already have R installed, install it
-conda install r::r-base
-
 ```
 
 ## Examine the raw sequencing data (.fastq files)
