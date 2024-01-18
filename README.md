@@ -18,9 +18,11 @@ conda install nanoporetech::samtools nanoporetech::bwa
 
 ## Clone this GitHub repo and install prerequisites
 
+Open a Terminal (Go -> Utilities -> Terminal), then run the following commands:
+
 ```
 # clone the repo to your computer and change directories to this location
-git clone git@github.com:agorelick/cancer_genomics_workshop.git; cd cancer_genomics_workshop
+git clone https://github.com/agorelick/cancer_genomics_workshop.git; cd cancer_genomics_workshop
 
 # check what we are going to install ('q' to exit)
 less naxerova_lab.yml
