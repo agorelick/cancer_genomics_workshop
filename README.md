@@ -104,7 +104,7 @@ igv
 3. Based on IGV (if you had to guess) do either the patient's lung or liver metastases seem more closely related to the locoregional lymph node (LN) metastasis?
 
 
-## 9. Call somatic mutations in paired tumor/normal mode (~10min)
+## 9. Call somatic mutations in paired tumor/normal mode (~15min)
 ```
 gatk Mutect2 -R GRCh38/genome_chr17_0_10Mb.fa \
         -I bams/PT1_sorted.bam \
