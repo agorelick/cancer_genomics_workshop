@@ -143,33 +143,12 @@ less unfiltered.vcf
 Start R-studio, then let's step through the script `make_heatmap_and_tree.R`
 
 
-## (If there's time) Use Variant Effect Predictor (VEP) to annotate mutations
+## Optional: uninstall Conda once we're done
 
-```r
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# export data from VCF file to VEP to annotate variants
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+conda install anaconda-clean
+anaconda-clean --yes
+rm -rf ~/anaconda3
 
-## load data
-d <- read.csv('filtered.vcf', comment.char='#', sep='\t', header=F)
-
-## extract field names from the header
-txt <- read.csv('filtered.vcf', sep='\n', header=F)[[1]]
-header <- strsplit(grep('#CHROM', txt, value=T),'\t')[[1]]
-header[1] <- 'CHROM'
-names(d) <- header
-
-## subset for PASS mutations
-d <- d[d$FILTER=='PASS',]
-
-## prepare input data for VEP
-d$dot <- '.'
-d$ShortVariantID <- paste0(d$CHROM,':',d$REF,d$POS,d$ALT)
-out <- d[,c('CHROM','POS','ShortVariantID','REF','ALT','dot','dot','dot')]
-write.table(out, file='data_for_vep.vcf', sep = " ", quote = F, row.names = F, col.names=F)
-```
-
-Upload the data to VEP (https://useast.ensembl.org/Tools/VEP)
 
 
 
