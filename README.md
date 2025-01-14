@@ -121,7 +121,7 @@ gatk Mutect2 -R GRCh38/genome_chr17_0_10Mb.fa \
         -O unfiltered.vcf
 
 # quick look at the output
-less unfiltered.vcf
+less -RNS unfiltered.vcf
 ```
 1. What does a VCF file show?
 2. Where can you find the number of reads supporting each mutation's reference and alternate allele in each sample?
@@ -133,7 +133,7 @@ less unfiltered.vcf
 gatk FilterMutectCalls -R GRCh38/genome_chr17_0_10Mb.fa -V unfiltered.vcf -O filtered.vcf
 
 # quick look at the output
-less -RNS unfiltered.vcf
+less -RNS filtered.vcf
 ```
 1. What are some of the filters to flag potential artifacts/false positive mutations?
 
