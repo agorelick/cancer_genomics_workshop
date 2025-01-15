@@ -120,7 +120,7 @@ igv
 ```
 
 ### Instructions
-        1. Select "Human hg38" as the reference genome
+        1. Select "Human (GRCh38/hg38)" as the reference genome
         2. Open the patient's normal bam file (N_sorted.bam) on IGV (File -> Load From File -> Navigate to bams/N_sorted.bam)
         3. Go to gene TP53 (Type "TP53" in the search bar and click "Go"), then zoom in to view the reads.
 
