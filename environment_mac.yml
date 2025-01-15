@@ -1,0 +1,13 @@
+name: naxerova_workshop
+channels:
+  - https://repo.anaconda.com/pkgs/main
+  - https://repo.anaconda.com/pkgs/r
+dependencies:
+  - bioconda::bwa
+  - bioconda::gatk
+  - bioconda::samtools
+  - conda-forge::git
+  - conda-forge::r-ape
+  - conda-forge::r-base==4.4.2
+  - conda-forge::r-pheatmap
+  - bioconda::igv==2.4.9.0
