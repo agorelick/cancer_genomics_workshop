@@ -4,20 +4,30 @@
 
 ### Instructions for Mac
 
+1. Open a terminal on your computer: `Finder > Go > Utilities > Terminal`
+2. clone this GitHub repo to your computer
+   * In terminal, type `git clone https://github.com/agorelick/cancer_genomics_workshop.git; cd cancer_genomics_workshop` and hit enter.
+4. Install Conda on your computer following the instructions here: https://docs.anaconda.com/miniconda/install/#quick-command-line-install
+   * Older Intel-chip Macs: Select `MacOS > Intel`
+   * Newer Apple Silicon Macs: Select `MacOS > Apple Silicon`
+   * Copy and paste the commands into your terminal and hit enter.
+   * Close the terminal and open a new terminal. You should see the text `(base)` in the prompt at the bottom.
+5. Use Conda to install all required software into a contained environment called *naxerova_workshop: `conda env create -f environment_mac.yml`
+6. Activate the naxerova_workshop Conda environment: `conda activate naxerova_workshop`. You should see the text `(naxerova_workshop)` at the bottom.
+
+
 ### Instructions for Windows
 
 You will need to install a linux terminal within your windows computer. Windows 10+ has a built-in utility for this called WSL (Windows Subsystem for Linux). To use enable WSL, follow the instructions here. *this may take a few minutes and will require restarting.* 
-1. Follow these instructions to install a linux terminal within your windows computer: https://www.geeksforgeeks.org/how-to-install-wsl2-windows-subsystem-for-linux-2-on-windows-10/
+1. Follow these instructions to install a linux command-line on your windows computer: https://www.geeksforgeeks.org/how-to-install-wsl2-windows-subsystem-for-linux-2-on-windows-10/
 2. Restart your computer
 3. Search for WSL to start your linux terminal. Choose a username and password (something easy to remember).
-
-Install miniconda on your linux terminal (ref: https://docs.anaconda.com/miniconda/install/#quick-command-line-install)
-```
-mkdir -p ~/miniconda3
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
-bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
-rm ~/miniconda3/miniconda.sh
-```
+4. Install Conda on your linux terminal following the instructions here: https://docs.anaconda.com/miniconda/install/#quick-command-line-install
+   * Select `Linux > 64-bit`
+   * Copy and paste the commands into your terminal and hit enter.
+   * Close the terminal and open a new terminal. You should see the text `(base)` in the prompt at the bottom.
+5. Use Conda to install all required software into a contained environment called *naxerova_workshop: `conda env create -f environment_windows.yml`
+6. Activate the naxerova_workshop Conda environment: `conda activate naxerova_workshop`. You should see the text `(naxerova_workshop)` at the bottom.
 
 
 After this workshop, completely remove WSL with following these instructions: 
