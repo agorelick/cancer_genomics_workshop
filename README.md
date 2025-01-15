@@ -111,7 +111,7 @@ igv
 3. Based on IGV (if you had to guess) do either the patient's lung or liver metastases seem more closely related to the locoregional lymph node (LN) metastasis?
 
 
-## 9. Call somatic mutations in paired tumor/normal mode (~15min)
+## 6. Call somatic mutations in paired tumor/normal mode (~15min)
 ```
 gatk Mutect2 -R GRCh38/genome_chr17_0_10Mb.fa \
         -I bams/PT1_sorted.bam \
@@ -135,7 +135,7 @@ less -RNS unfiltered.vcf
 3. Can you see any mutations that look like they are real (true positives) or artifacts? What information might help?
 
 
-## 10. Apply filters to try to remove false-positive mutations
+## 7. Apply filters to flag potential false-positive mutations
 ```
 gatk FilterMutectCalls -R GRCh38/genome_chr17_0_10Mb.fa -V unfiltered.vcf -O filtered.vcf
 
@@ -145,13 +145,16 @@ less -RNS filtered.vcf
 1. What are some of the filters to flag potential artifacts/false positive mutations?
 
 
-## 11. Make heatmap and phylogenetic tree
+## 8. Make heatmap and phylogenetic tree
 
 Start R-studio, then let's step through the script `make_heatmap_and_tree.R`
 
 
-## Optional: uninstall Conda once we are done
+## Optional: Revert your computer (Mac)
 
+### Remove the Conda environment and all newly installed software
+
+### Remove Conda from your computer
 ```
 conda install anaconda-clean
 anaconda-clean --yes
@@ -160,6 +163,16 @@ rm -rf ~/anaconda3
 
 
 
+## Optional: Revert your computer (Windows)
+
+### Remove the Conda environment and all newly installed software
+
+### Remove WSL (linux terminal) from your computer
+```
+conda install anaconda-clean
+anaconda-clean --yes
+rm -rf ~/anaconda3
+```
 
 
 
