@@ -35,36 +35,8 @@ After this workshop, completely remove WSL with following these instructions:
 * Windows 11: https://www.elevenforum.com/t/uninstall-windows-subsystem-for-linux-wsl-distro-in-windows-11.12250/
 
 
-## 1. Install miniconda on your computer
 
-(See Google Slides presentation slide for instructions)
-
-## 2. Install prerequisite software into a new conda environment
-
-Open a Terminal (Go -> Utilities -> Terminal), then run the following commands:
-
-```
-# After conda is installed, create a new conda environment for this workshop:
-conda create --name naxerova_workshop
-conda activate naxerova_workshop
-conda config --add channels bioconda
-
-# if you have an older intel chip mac:
-conda install gatk4 igv samtools git bwa
-
-# if you have a newer M1/M2 mac:
-conda install gatk4 igv git
-conda install nanoporetech::samtools nanoporetech::bwa
-```
-
-## 3. Clone this GitHub repo to access raw data and scripts
-
-```
-# clone the repo to your computer and change directories to this location
-git clone https://github.com/agorelick/cancer_genomics_workshop.git; cd cancer_genomics_workshop
-```
-
-## 4. Examine the raw sequencing data (.fastq files)
+## 1. Examine the raw sequencing data (.fastq files)
 
 1. What does raw Next Generation Sequencing data look like? 
 
@@ -79,15 +51,13 @@ cat fastq/N_R1.fastq.gz | gunzip | head -10
 2. What do we actually **want to know** from this data?
 3. What do we need to do to make this data _interpretable_?
 
-## 5. Examine the reference genome
+## 2. Align raw sequencing data to human reference genome
 
 1. What is a reference genome?
 2. Why do we need it?
 3. Are there potential downsides to using a reference genome?
 4. Do the downsides affect us if we are calling _somatic_ mutations?
-
-
-## 6. Align raw sequencing data to human reference genome
+   
 ```
 mkdir bams
 bwa mem -t 1 -R '@RG\tID:9\tSM:N' GRCh38/genome_chr17_0_10Mb fastq/N_R1.fastq.gz fastq/N_R2.fastq.gz > bams/N.sam
@@ -101,15 +71,17 @@ bwa mem -t 1 -R '@RG\tID:7\tSM:Lun2' GRCh38/genome_chr17_0_10Mb fastq/Lun2_R1.fa
 bwa mem -t 1 -R '@RG\tID:8\tSM:Lun3' GRCh38/genome_chr17_0_10Mb fastq/Lun3_R1.fastq.gz fastq/Lun3_R2.fastq.gz > bams/Lun3.sam
 ```
 
-1. What is the difference between a SAM file and a FASTQ file? (see: https://en.wikipedia.org/wiki/SAM_(file_format))
-2. Are SAM files compressed?
-3. Are the reads sorted?
-4. What does the CIGAR field tell us? (https://en.wikipedia.org/wiki/Sequence_alignment#CIGAR_Format) 
-5. Can you find any reads that differ from the reference genome? Can we tell if these are biological differences (e.g. mutations) or technical (e.g. noise)?
+5. What is the difference between a SAM file and a FASTQ file? (see: https://en.wikipedia.org/wiki/SAM_(file_format))
+6. Are SAM files compressed?
+7. Are the reads sorted?
+8. What does the CIGAR field tell us? (https://en.wikipedia.org/wiki/Sequence_alignment#CIGAR_Format) 
+9. Can you find any reads that differ from the reference genome? Can we tell if these are biological differences (e.g. mutations) or technical (e.g. noise)?
 
 
-## 7. Format aligned reads so that variant callers can use them
+## 4. Format aligned reads so that variant callers can use them
 ```
+1. Look at the 
+
 samtools view -hb bams/N.sam > bams/N.bam; samtools sort bams/N.bam > bams/N_sorted.bam; samtools index bams/N_sorted.bam
 samtools view -hb bams/PT1.sam > bams/PT1.bam; samtools sort bams/PT1.bam > bams/PT1_sorted.bam; samtools index bams/PT1_sorted.bam
 samtools view -hb bams/PT2.sam > bams/PT2.bam; samtools sort bams/PT2.bam > bams/PT2_sorted.bam; samtools index bams/PT2_sorted.bam
@@ -122,7 +94,7 @@ samtools view -hb bams/Lun3.sam > bams/Lun3.bam; samtools sort bams/Lun3.bam > b
 ```
 
 
-## 8. Look at aligned sequencing data on IGV
+## 5. Look at aligned sequencing data on IGV
 
 ```
 # open IGV (Integrative Genomics Viewer) from the command line
@@ -130,9 +102,9 @@ igv
 ```
 
 ### Instructions
-        1. Select "Human (GRCh38/hg38)" as the reference genome
-        2. Open the patient's normal bam file (N_sorted.bam) on IGV (File -> Load From File -> Navigate to bams/N_sorted.bam)
-        3. Go to gene TP53 (Type "TP53" in the search bar and click "Go"), then zoom in to view the reads.
+1. Select "Human (GRCh38/hg38)" as the reference genome
+2. Open the patient's normal bam file (N_sorted.bam) on IGV (File -> Load From File -> Navigate to bams/N_sorted.bam)
+3. Go to gene TP53 (Type "TP53" in the search bar and click "Go"), then zoom in to view the reads.
 
 1. Can you find any differences in the patient's genome from the reference genome (e.g. single-nucleotide polymorphisms)? Are they heterozygous or homozygous?
 2. Can you find any somatic mutations? Can we tell if they likely occured either early or late in the patient's cancer?
