@@ -168,12 +168,13 @@ less -RNS filtered.vcf
 Start R-studio, then let's step through the script `make_heatmap_and_tree.R`
 
 
-## Optional: uninstall Conda once we're done
+## Optional: uninstall Conda once we are done
 
+```
 conda install anaconda-clean
 anaconda-clean --yes
 rm -rf ~/anaconda3
-
+```
 
 
 
