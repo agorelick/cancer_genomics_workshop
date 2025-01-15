@@ -1,5 +1,30 @@
 # Welcome to Naxerova Lab's Cancer Genomics Workshop!
 
+## Install software
+
+### Instructions for Mac
+
+### Instructions for Windows
+
+You will need to install a linux terminal within your windows computer. Windows 10+ has a built-in utility for this called WSL (Windows Subsystem for Linux). To use enable WSL, follow the instructions here. *this may take a few minutes and will require restarting.* 
+1. Follow these instructions to install a linux terminal within your windows computer: https://www.geeksforgeeks.org/how-to-install-wsl2-windows-subsystem-for-linux-2-on-windows-10/
+2. Restart your computer
+3. Search for WSL to start your linux terminal. Choose a username and password (something easy to remember).
+
+Install miniconda on your linux terminal (ref: https://docs.anaconda.com/miniconda/install/#quick-command-line-install)
+```
+mkdir -p ~/miniconda3
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
+bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
+rm ~/miniconda3/miniconda.sh
+```
+
+
+After this workshop, completely remove WSL with following these instructions: 
+* Windows 10: https://medium.com/@bonguides25/how-to-completely-uninstall-the-subsystem-for-linux-on-windows-10-20c5c1377117
+* Windows 11: https://www.elevenforum.com/t/uninstall-windows-subsystem-for-linux-wsl-distro-in-windows-11.12250/
+
+
 ## 1. Install miniconda on your computer
 
 (See Google Slides presentation slide for instructions)
@@ -10,8 +35,8 @@ Open a Terminal (Go -> Utilities -> Terminal), then run the following commands:
 
 ```
 # After conda is installed, create a new conda environment for this workshop:
-conda create --name naxerova_lab
-conda activate naxerova_lab
+conda create --name naxerova_workshop
+conda activate naxerova_workshop
 conda config --add channels bioconda
 
 # if you have an older intel chip mac:
