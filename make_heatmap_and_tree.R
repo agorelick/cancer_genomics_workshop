@@ -1,10 +1,6 @@
-## install ape package if it is not installed
-if(!'ape' %in%  rownames(installed.packages())) {
-    options(install.packages='always')
-    install.packages('ape')
-}
-
-library(ape)
+library(pheatmap) # for heatmap 
+library(ape) # for neighbor-joining tree
+library(phytools) # for rooting tree at the germline/normal sample
 
 ## load data
 d <- read.csv('filtered.vcf', comment.char='#', sep='\t', header=F)
@@ -15,11 +11,12 @@ header <- strsplit(grep('#CHROM', txt, value=T),'\t')[[1]]
 header[1] <- 'CHROM'
 names(d) <- header
 
-## subset for PASS mutations
+## subset for mutations that passed all QC filters
 d <- d[d$FILTER=='PASS',]
 d$ID <- paste0(d$CHROM,'.',d$REF,d$POS,d$ALT)
 res <- d[,c('ID','PT1','PT2','PT3','LN1','Liv1','Lun1','Lun2','Lun3')]
 
+## extract the number of ALT/REF reads in each sample
 extract_read_counts <- function(string) {
     AD <- sapply(string, function(x) strsplit(x, '[:]')[[1]][2])
     ref_count <- sapply(AD, function(x) strsplit(x, '[,]')[[1]][1])
@@ -41,30 +38,48 @@ AD_Lun3 <- extract_read_counts(res$Lun3)
 ## create a matrix of VAFs for all samples/mutations
 alt_counts<-cbind(PT1=AD_PT1$alt, PT2=AD_PT2$alt, PT3=AD_PT3$alt, LN1=AD_LN1$alt, Liv1=AD_Liv1$alt, Lun1=AD_Lun1$alt, Lun2=AD_Lun2$alt, Lun3=AD_Lun3$alt)
 ref_counts<-cbind(PT1=AD_PT1$ref, PT2=AD_PT2$ref, PT3=AD_PT3$ref, LN1=AD_LN1$ref, Liv1=AD_Liv1$ref, Lun1=AD_Lun1$ref, Lun2=AD_Lun2$ref, Lun3=AD_Lun3$ref)
-vaf <- alt_counts / (alt_counts + ref_counts)
+total_counts <- alt_counts + ref_counts
+vaf <- alt_counts / total_counts
 rownames(vaf) <- res$ID
 
-## remove any variants with insufficient read support (possible artifacts)
-samples_with_evidence <- rowSums(alt_counts >= 3)
-bad_variants <- samples_with_evidence==0
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# remove any variants with insufficient read support 
+# (possible false positives due to seq. error)
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# first remove any mutations without at least 20 read coverage in all samples
+number_of_samples_with_good_coverage <- rowSums(total_counts >= 20) 
+bad_variants <- number_of_samples_with_good_coverage < ncol(vaf)
 vaf <- vaf[-bad_variants,]
-vaf <- cbind(vaf, N=0)
+total_counts <- total_counts[-bad_variants,]
+alt_counts <- alt_counts[-bad_variants,]
+ref_counts <- ref_counts[-bad_variants,]
+
+# next remove any mutations not mutated with at least 5% VAF and 3 ALT reads in at least 1 sample
+samples_with_evidence <- rowSums(alt_counts >= 3 & vaf >= 0.05)
+bad_variants <- samples_with_evidence < 1
+vaf <- vaf[-bad_variants,]
+total_counts <- total_counts[-bad_variants,]
+alt_counts <- alt_counts[-bad_variants,]
+ref_counts <- ref_counts[-bad_variants,]
+
+# add germline to the VAF data (with VAF=0 for all mutations)
+vaf <- cbind(vaf, germline=0)
 
 ## save the VAF matrix
 write.table(vaf, file = 'vaf_matrix.txt', sep = "\t", quote = FALSE, col.names = NA)
 
 ## make a heatmap from the VAFs for each sample/variant
 rownames(vaf) <- rep('', nrow(vaf))
-pdf('heatmap.pdf',width=9, height=7)
-heatmap(t(vaf))
-dev.off()
+pheatmap(t(vaf),file='heatmap.pdf',width=9, height=7)
 
-## make a NJ tree based on the true CCF values
+## make a NJ tree based on the mutations' VAFs
 dm <- dist(t(vaf), method='euclidean')
 tree <- nj(dm)
-tree <- root(tree, outgroup='N')
+tree <- phytools::reroot(tree, which(tree$tip.label=='germline'))
+
 pdf('tree.pdf',width=10, height=8)
-plot(tree, type='u')
+plot(tree)
 dev.off()
 
 
