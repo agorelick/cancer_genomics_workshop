@@ -12,9 +12,12 @@
    * Newer Apple Silicon Macs: Select `MacOS > Apple Silicon`
    * Copy and paste the commands into your terminal and hit enter.
    * Close the terminal and open a new terminal. You should see the text `(base)` in the prompt at the bottom.
-4. Use Conda to install all required software into a contained environment called *naxerova_workshop: `conda env create -f environment.yml`
-5. Activate the naxerova_workshop Conda environment: `conda activate naxerova_workshop`. You should see the text `(naxerova_workshop)` at the bottom.
-6. Download IGV (Integrative Genomics Viewer): https://igv.org/doc/desktop/#DownloadPage/
+4. Use Conda to install all required software into a contained environment called *naxerova_workshop:
+   ```
+   conda env create -f environment.yml
+   ```
+6. Activate the naxerova_workshop Conda environment: `conda activate naxerova_workshop`. You should see the text `(naxerova_workshop)` at the bottom.
+7. Download IGV (Integrative Genomics Viewer): https://igv.org/doc/desktop/#DownloadPage/
    * Select either `IGV For MacOS (Apple Chip) - Java Included` or `IGV For MacOS (Intel Chip) - Java Included`
    
 
@@ -28,9 +31,12 @@ You will need to install a linux terminal within your windows computer. Windows 
    * Select `Linux > 64-bit`
    * Copy and paste the commands into your terminal and hit enter.
    * Close the terminal and open a new terminal. You should see the text `(base)` in the prompt at the bottom.
-5. Use Conda to install all required software into a contained environment called *naxerova_workshop: `conda env create -f environment.yml`
-6. Activate the naxerova_workshop Conda environment: `conda activate naxerova_workshop`. You should see the text `(naxerova_workshop)` at the bottom.
-7. Download IGV (Integrative Genomics Viewer): https://igv.org/doc/desktop/#DownloadPage/
+5. Use Conda to install all required software into a contained environment called *naxerova_workshop:
+   ```
+   conda env create -f environment.yml
+   ```
+7. Activate the naxerova_workshop Conda environment: `conda activate naxerova_workshop`. You should see the text `(naxerova_workshop)` at the bottom.
+8. Download IGV (Integrative Genomics Viewer): https://igv.org/doc/desktop/#DownloadPage/
    * Select `IGV For Windows - Java Included`
 
 ## 1. Examine the raw sequencing data (.fastq files)
