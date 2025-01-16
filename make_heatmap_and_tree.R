@@ -1,6 +1,8 @@
 library(pheatmap) # for heatmap 
 library(ape) # for neighbor-joining tree
 library(phytools) # for rooting tree at the germline/normal sample
+library(ggplot2) # plotting
+library(ggtree) # plotting
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # load mutation data from the VCF file
@@ -87,8 +89,7 @@ write.table(vaf, file = 'vaf_matrix.txt', sep = "\t", quote = FALSE, col.names =
 
 ## make a heatmap from the VAFs for each sample/variant
 rownames(vaf) <- rep('', nrow(vaf))
-pheatmap(t(vaf),file='heatmap.pdf',width=9, height=7)
-
+pheatmap(t(vaf),file='heatmap.png',width=8, height=5.5)
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # generate cancer evolution tree
@@ -99,9 +100,20 @@ dm <- dist(t(vaf), method='euclidean')
 tree <- nj(dm)
 tree <- phytools::reroot(tree, which(tree$tip.label=='germline'))
 
-pdf('tree.pdf',width=10, height=8)
-plot(tree,type='u')
-dev.off()
+groups <- rbind(data.frame(label=grep('^germline',tree$tip.label,value=T), group='Normal'),
+                data.frame(label=grep('^PT',tree$tip.label,value=T), group='Primary'),
+                data.frame(label=grep('^Liv',tree$tip.label,value=T), group='Liver'),
+                data.frame(label=grep('^Lun',tree$tip.label,value=T), group='Lung'),
+                data.frame(label=grep('^LN',tree$tip.label,value=T), group='Lymph node'))
+
+cols <- c('black','forestgreen','steelblue','magenta','orange')
+names(cols) <- c('Normal','Primary','Liver','Lung','Lymph node')
+p <- ggtree(tree, layout='ape') 
+p <- p %<+% groups
+p <- p + geom_tiplab(aes(color=group), angle=0) + theme(legend.position='none')
+p <- p + xlim(min(p$data$x-1.0), max(p$data$x+3.0)) + 
+    scale_color_manual(values=cols, name='Sample type') 
+ggsave('tree.png')
 
 
 
