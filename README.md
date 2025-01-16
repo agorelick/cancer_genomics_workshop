@@ -7,14 +7,16 @@
 1. Open a terminal on your computer: `Finder > Go > Utilities > Terminal`
 2. clone this GitHub repo to your computer
    * In terminal, type `git clone https://github.com/agorelick/cancer_genomics_workshop.git; cd cancer_genomics_workshop` and hit enter.
-4. Install Conda on your computer following the instructions here: https://docs.anaconda.com/miniconda/install/#quick-command-line-install
+3. Install Conda on your computer following the instructions here: https://docs.anaconda.com/miniconda/install/#quick-command-line-install
    * Older Intel-chip Macs: Select `MacOS > Intel`
    * Newer Apple Silicon Macs: Select `MacOS > Apple Silicon`
    * Copy and paste the commands into your terminal and hit enter.
    * Close the terminal and open a new terminal. You should see the text `(base)` in the prompt at the bottom.
-5. Use Conda to install all required software into a contained environment called *naxerova_workshop: `conda env create -f environment_mac.yml`
-6. Activate the naxerova_workshop Conda environment: `conda activate naxerova_workshop`. You should see the text `(naxerova_workshop)` at the bottom.
-
+4. Use Conda to install all required software into a contained environment called *naxerova_workshop: `conda env create -f environment.yml`
+5. Activate the naxerova_workshop Conda environment: `conda activate naxerova_workshop`. You should see the text `(naxerova_workshop)` at the bottom.
+6. Download IGV (Integrative Genomics Viewer): https://igv.org/doc/desktop/#DownloadPage/
+   * Select either `IGV For MacOS (Apple Chip) - Java Included` or `IGV For MacOS (Intel Chip) - Java Included`
+   
 
 ### Instructions for Windows
 
@@ -26,15 +28,10 @@ You will need to install a linux terminal within your windows computer. Windows 
    * Select `Linux > 64-bit`
    * Copy and paste the commands into your terminal and hit enter.
    * Close the terminal and open a new terminal. You should see the text `(base)` in the prompt at the bottom.
-5. Use Conda to install all required software into a contained environment called *naxerova_workshop: `conda env create -f environment_windows.yml`
+5. Use Conda to install all required software into a contained environment called *naxerova_workshop: `conda env create -f environment.yml`
 6. Activate the naxerova_workshop Conda environment: `conda activate naxerova_workshop`. You should see the text `(naxerova_workshop)` at the bottom.
-
-
-After this workshop, completely remove WSL with following these instructions: 
-* Windows 10: https://medium.com/@bonguides25/how-to-completely-uninstall-the-subsystem-for-linux-on-windows-10-20c5c1377117
-* Windows 11: https://www.elevenforum.com/t/uninstall-windows-subsystem-for-linux-wsl-distro-in-windows-11.12250/
-
-
+7. Download IGV (Integrative Genomics Viewer): https://igv.org/doc/desktop/#DownloadPage/
+   * Select `IGV For Windows - Java Included`
 
 ## 1. Examine the raw sequencing data (.fastq files)
 
@@ -80,8 +77,6 @@ bwa mem -t 1 -R '@RG\tID:8\tSM:Lun3' GRCh38/genome_chr17_0_10Mb fastq/Lun3_R1.fa
 
 ## 4. Format aligned reads so that variant callers can use them
 ```
-1. Look at the 
-
 samtools view -hb bams/N.sam > bams/N.bam; samtools sort bams/N.bam > bams/N_sorted.bam; samtools index bams/N_sorted.bam
 samtools view -hb bams/PT1.sam > bams/PT1.bam; samtools sort bams/PT1.bam > bams/PT1_sorted.bam; samtools index bams/PT1_sorted.bam
 samtools view -hb bams/PT2.sam > bams/PT2.bam; samtools sort bams/PT2.bam > bams/PT2_sorted.bam; samtools index bams/PT2_sorted.bam
@@ -96,19 +91,18 @@ samtools view -hb bams/Lun3.sam > bams/Lun3.bam; samtools sort bams/Lun3.bam > b
 
 ## 5. Look at aligned sequencing data on IGV
 
-```
-# open IGV (Integrative Genomics Viewer) from the command line
-igv
-```
-
 ### Instructions
-1. Select "Human (GRCh38/hg38)" as the reference genome
-2. Open the patient's normal bam file (N_sorted.bam) on IGV (File -> Load From File -> Navigate to bams/N_sorted.bam)
-3. Go to gene TP53 (Type "TP53" in the search bar and click "Go"), then zoom in to view the reads.
-
-1. Can you find any differences in the patient's genome from the reference genome (e.g. single-nucleotide polymorphisms)? Are they heterozygous or homozygous?
-2. Can you find any somatic mutations? Can we tell if they likely occured either early or late in the patient's cancer?
-3. Based on IGV (if you had to guess) do either the patient's lung or liver metastases seem more closely related to the locoregional lymph node (LN) metastasis?
+1. Extract the IGV application .zip file and run it.
+2. Select "Human (GRCh38/hg38)" as the reference genome
+3. Load the patient's normal bam (N_sorted.bam) onto IGV (Go to: File -> Load From File -> Navigate to bams/N_sorted.bam)
+4. Go to gene TP53 (Type "TP53" in the search bar and click "Go"), then zoom in to view the reads.
+    * Can you find any differences in the patient's genome from the reference genome (e.g. single-nucleotide polymorphisms, SNPs)? Are they heterozygous or homozygous?
+5. Without removing the N1 bam file, add a primary tumor bam file (PT1_sorted.bam) onto IGV (Go to: File -> Load From File -> Navigate to bams/N_sorted.bam)
+    * Can you find any somatic mutations?
+6. Without removing N1 or PT1, add *sorted* bam files for LN1, Liv1, Lung1 onto IGV. (Right click on reads and select "squished" to see all reads.)
+    * Can you find somatic mutations that arose early in the patient's cancer? Late in the cancer? How do we know?
+    * Based on IGV (if you had to guess) are either the patient's lung or liver metastases seem more closely related to the locoregional lymph node (LN) metastasis?
+    * Can you find any mutations present in multiple metastasis samples and absent in the primary tumor sample? What scenarios can explain this (multiple answers!)
 
 
 ## 6. Call somatic mutations in paired tumor/normal mode (~15min)
@@ -127,7 +121,7 @@ gatk Mutect2 -R GRCh38/genome_chr17_0_10Mb.fa \
         -normal "N" \
         -O unfiltered.vcf
 
-# quick look at the output
+# quick look at the output (scroll with keyboard arrows; q to exit)
 less -RNS unfiltered.vcf
 ```
 1. What does a VCF file show?
@@ -139,7 +133,7 @@ less -RNS unfiltered.vcf
 ```
 gatk FilterMutectCalls -R GRCh38/genome_chr17_0_10Mb.fa -V unfiltered.vcf -O filtered.vcf
 
-# quick look at the output
+# quick look at the output (scroll with keyboard arrows; q to exit)
 less -RNS filtered.vcf
 ```
 1. What are some of the filters to flag potential artifacts/false positive mutations?
@@ -153,7 +147,10 @@ Start R-studio, then let's step through the script `make_heatmap_and_tree.R`
 ## Optional: Revert your computer (Mac)
 
 ### Remove the Conda environment and all newly installed software
-
+```
+conda deactivate
+conda remove --name naxerova_workshop --all
+```
 ### Remove Conda from your computer
 ```
 conda install anaconda-clean
@@ -167,12 +164,18 @@ rm -rf ~/anaconda3
 
 ### Remove the Conda environment and all newly installed software
 
-### Remove WSL (linux terminal) from your computer
+Use the following commands to completely remove Conda (and all newly installed software):
 ```
 conda install anaconda-clean
 anaconda-clean --yes
 rm -rf ~/anaconda3
 ```
+### Remove WSL (linux terminal) from your computer
+
+Completely remove WSL with following these instructions (select your Windows version): 
+* Windows 10: https://medium.com/@bonguides25/how-to-completely-uninstall-the-subsystem-for-linux-on-windows-10-20c5c1377117
+* Windows 11: https://www.elevenforum.com/t/uninstall-windows-subsystem-for-linux-wsl-distro-in-windows-11.12250/
+
 
 
 
