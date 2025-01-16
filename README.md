@@ -98,14 +98,17 @@ samtools view -hb bams/Lun3.sam > bams/Lun3.bam; samtools sort bams/Lun3.bam > b
 ## 5. Look at aligned sequencing data on IGV
 
 ### Instructions
-1. Extract the IGV application .zip file and run it.
-2. Select "Human (GRCh38/hg38)" as the reference genome
-3. Load the patient's normal bam (N_sorted.bam) onto IGV (Go to: File -> Load From File -> Navigate to bams/N_sorted.bam)
-4. Go to gene TP53 (Type "TP53" in the search bar and click "Go"), then zoom in to view the reads.
+1. Open IGV
+    * Mac: Extract the IGV application .zip file and run it.
+    * Windows: open it from the installation
+3. Select "Human (GRCh38/hg38)" as the reference genome
+4. Load the patient's normal bam (N_sorted.bam) onto IGV (Go to: File -> Load From File -> Navigate to bams/N_sorted.bam)
+    * Windows: Home > cancer_genomics_workshop > bams > N_sorted.bam
+6. Go to gene TP53 (Type "TP53" in the search bar and click "Go"), then zoom in to view the reads.
     * Can you find any differences in the patient's genome from the reference genome (e.g. single-nucleotide polymorphisms, SNPs)? Are they heterozygous or homozygous?
-5. Without removing the N1 bam file, add a primary tumor bam file (PT1_sorted.bam) onto IGV (Go to: File -> Load From File -> Navigate to bams/N_sorted.bam)
+7. Without removing the N1 bam file, add a primary tumor bam file (PT1_sorted.bam) onto IGV (Go to: File -> Load From File -> Navigate to bams/N_sorted.bam)
     * Can you find any somatic mutations?
-6. Without removing N1 or PT1, add *sorted* bam files for LN1, Liv1, Lung1 onto IGV. (Right click on reads and select "squished" to see all reads.)
+8. Without removing N1 or PT1, add *sorted* bam files for LN1, Liv1, Lung1 onto IGV. (Right click on reads and select "squished" to see all reads.)
     * Can you find somatic mutations that arose early in the patient's cancer? Late in the cancer? How do we know?
     * Based on IGV (if you had to guess) are either the patient's lung or liver metastases seem more closely related to the locoregional lymph node (LN) metastasis?
     * Can you find any mutations present in multiple metastasis samples and absent in the primary tumor sample? What scenarios in cancer evolution can explain this (multiple answers!)
@@ -159,7 +162,7 @@ Rscript make_heatmap_and_tree.R
 
 
 
-## Optional: Revert your computer (Mac)
+## Optional: Revert your computer
 
 ### Remove the Conda environment and all newly installed software
 ```
@@ -168,32 +171,16 @@ conda remove --name naxerova_workshop --all -y
 ```
 ### Remove Conda from your computer
 ```
-conda install anaconda-clean
-anaconda-clean --yes
-rm -rf ~/anaconda3
+~/miniconda3/uninstall.sh
 ```
 
-### Remove IGV 
+### (Mac) Remove IGV
 Move the IGV .zip file and extracted application to the Trash.
 
+### (Windows) Remove IGV
+Uninstall IGV: Start > Search for IGV > Open File Location > Run uninstaller
 
-## Optional: Revert your computer (Windows)
-
-### Remove the Conda environment and all newly installed software
-```
-conda deactivate
-conda remove --name naxerova_workshop --all -y
-```
-### Remove Conda from your computer
-```
-conda install anaconda-clean
-anaconda-clean --yes
-rm -rf ~/anaconda3
-```
-### Remove IGV
-To do
-
-### Remove WSL (linux terminal) from your computer
+### (Windows) Remove WSL terminal from your computer
 Completely remove WSL with following these instructions (select your Windows version): 
 * Windows 10: https://medium.com/@bonguides25/how-to-completely-uninstall-the-subsystem-for-linux-on-windows-10-20c5c1377117
 * Windows 11: https://www.elevenforum.com/t/uninstall-windows-subsystem-for-linux-wsl-distro-in-windows-11.12250/
