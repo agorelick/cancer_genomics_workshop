@@ -167,6 +167,9 @@ anaconda-clean --yes
 rm -rf ~/anaconda3
 ```
 
+### Remove IGV 
+Move the IGV .zip file and extracted application to the Trash.
+
 
 ## Optional: Revert your computer (Windows)
 
@@ -181,6 +184,8 @@ conda install anaconda-clean
 anaconda-clean --yes
 rm -rf ~/anaconda3
 ```
+### Remove IGV
+To do
 
 ### Remove WSL (linux terminal) from your computer
 Completely remove WSL with following these instructions (select your Windows version): 
