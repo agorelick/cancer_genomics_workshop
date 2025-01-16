@@ -1,6 +1,6 @@
 # Welcome to Naxerova Lab's Cancer Genomics Workshop!
 
-## Install software
+## Install Prequisite software
 
 ### Instructions for Mac
 
@@ -38,7 +38,7 @@ You will need to install a linux terminal within your windows computer. Windows 
 1. What does raw Next Generation Sequencing data look like? 
 
 ```
-# view the first 10 lines of the compressed data
+# view the first 10 lines of compressed data
 head -10 fastq/N_R1.fastq.gz
 
 # view the first 10 lines of uncompressed data
@@ -102,10 +102,10 @@ samtools view -hb bams/Lun3.sam > bams/Lun3.bam; samtools sort bams/Lun3.bam > b
 6. Without removing N1 or PT1, add *sorted* bam files for LN1, Liv1, Lung1 onto IGV. (Right click on reads and select "squished" to see all reads.)
     * Can you find somatic mutations that arose early in the patient's cancer? Late in the cancer? How do we know?
     * Based on IGV (if you had to guess) are either the patient's lung or liver metastases seem more closely related to the locoregional lymph node (LN) metastasis?
-    * Can you find any mutations present in multiple metastasis samples and absent in the primary tumor sample? What scenarios can explain this (multiple answers!)
+    * Can you find any mutations present in multiple metastasis samples and absent in the primary tumor sample? What scenarios in cancer evolution can explain this (multiple answers!)
 
 
-## 6. Call somatic mutations in paired tumor/normal mode (~15min)
+## 6. Call somatic mutations in paired multi-sample tumor/normal mode (~15min)
 ```
 gatk Mutect2 -R GRCh38/genome_chr17_0_10Mb.fa \
         -I bams/PT1_sorted.bam \
@@ -126,7 +126,7 @@ less -RNS unfiltered.vcf
 ```
 1. What does a VCF file show?
 2. Where can you find the number of reads supporting each mutation's reference and alternate allele in each sample?
-3. Can you see any mutations that look like they are real (true positives) or artifacts? What information might help?
+3. Can you see any mutations that look like they are real (true positives)? What about false-positives/artifacts? What information might help?
 
 
 ## 7. Apply filters to flag potential false-positive mutations
@@ -136,12 +136,21 @@ gatk FilterMutectCalls -R GRCh38/genome_chr17_0_10Mb.fa -V unfiltered.vcf -O fil
 # quick look at the output (scroll with keyboard arrows; q to exit)
 less -RNS filtered.vcf
 ```
-1. What are some of the filters to flag potential artifacts/false positive mutations?
+1. What are some filters to flag potential artifacts/false positive mutations? Why might they be a common source of false positives in mutation calling?
 
 
 ## 8. Make heatmap and phylogenetic tree
 
-Start R-studio, then let's step through the script `make_heatmap_and_tree.R`
+1. Let's look through the included R script `make_heatmap_and_tree.R`:
+```
+# quick look at the R script (scroll with keyboard arrows; q to exit)
+less make_heatmap_and_tree.R
+```
+2. Run the R script to create a heatmap and phylogenetic tree for the tumor samples, then open the PDFs on your computer. 
+```
+Rscript make_heatmap_and_tree.R
+```
+
 
 
 ## Optional: Revert your computer (Mac)
@@ -149,7 +158,7 @@ Start R-studio, then let's step through the script `make_heatmap_and_tree.R`
 ### Remove the Conda environment and all newly installed software
 ```
 conda deactivate
-conda remove --name naxerova_workshop --all
+conda remove --name naxerova_workshop --all -y
 ```
 ### Remove Conda from your computer
 ```
@@ -159,19 +168,21 @@ rm -rf ~/anaconda3
 ```
 
 
-
 ## Optional: Revert your computer (Windows)
 
 ### Remove the Conda environment and all newly installed software
-
-Use the following commands to completely remove Conda (and all newly installed software):
+```
+conda deactivate
+conda remove --name naxerova_workshop --all -y
+```
+### Remove Conda from your computer
 ```
 conda install anaconda-clean
 anaconda-clean --yes
 rm -rf ~/anaconda3
 ```
-### Remove WSL (linux terminal) from your computer
 
+### Remove WSL (linux terminal) from your computer
 Completely remove WSL with following these instructions (select your Windows version): 
 * Windows 10: https://medium.com/@bonguides25/how-to-completely-uninstall-the-subsystem-for-linux-on-windows-10-20c5c1377117
 * Windows 11: https://www.elevenforum.com/t/uninstall-windows-subsystem-for-linux-wsl-distro-in-windows-11.12250/
