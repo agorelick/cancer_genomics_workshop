@@ -100,7 +100,7 @@ tree <- nj(dm)
 tree <- phytools::reroot(tree, which(tree$tip.label=='germline'))
 
 pdf('tree.pdf',width=10, height=8)
-plot(tree)
+plot(tree,type='u')
 dev.off()
 
 
