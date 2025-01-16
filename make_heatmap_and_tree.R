@@ -2,6 +2,10 @@ library(pheatmap) # for heatmap
 library(ape) # for neighbor-joining tree
 library(phytools) # for rooting tree at the germline/normal sample
 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# load mutation data from the VCF file
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 ## load data
 d <- read.csv('filtered.vcf', comment.char='#', sep='\t', header=F)
 
@@ -13,6 +17,13 @@ names(d) <- header
 
 ## subset for mutations that passed all QC filters
 d <- d[d$FILTER=='PASS',]
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# extract REF/ALT read counts for each variant in each 
+# sample from the VCF
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 d$ID <- paste0(d$CHROM,'.',d$REF,d$POS,d$ALT)
 res <- d[,c('ID','PT1','PT2','PT3','LN1','Liv1','Lun1','Lun2','Lun3')]
 
@@ -69,9 +80,19 @@ vaf <- cbind(vaf, germline=0)
 ## save the VAF matrix
 write.table(vaf, file = 'vaf_matrix.txt', sep = "\t", quote = FALSE, col.names = NA)
 
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# plot a heatmap of the clustered samples and mutations
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 ## make a heatmap from the VAFs for each sample/variant
 rownames(vaf) <- rep('', nrow(vaf))
 pheatmap(t(vaf),file='heatmap.pdf',width=9, height=7)
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# generate cancer evolution tree
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ## make a NJ tree based on the mutations' VAFs
 dm <- dist(t(vaf), method='euclidean')
