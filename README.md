@@ -24,7 +24,7 @@ You will need to install a linux terminal within your windows computer. Windows 
 1. Follow these instructions to install a linux command-line on your windows computer: https://www.geeksforgeeks.org/how-to-install-wsl2-windows-subsystem-for-linux-2-on-windows-10/
 2. Restart your computer
 3. Search for WSL to start your linux terminal. Choose a username and password (something easy to remember).
-4. Install Conda on your linux terminal following the instructions here: https://docs.anaconda.com/miniconda/install/#quick-command-line-install
+4. Install Conda on your **linux terminal** following the instructions here: https://docs.anaconda.com/miniconda/install/#quick-command-line-install
    * Select `Linux > 64-bit`
    * Copy and paste the commands into your terminal and hit enter.
    * Close the terminal and open a new terminal. You should see the text `(base)` in the prompt at the bottom.
