@@ -110,7 +110,7 @@ samtools view -hb bams/Lun3.sam > bams/Lun3.bam; samtools sort bams/Lun3.bam > b
     * Can you find any somatic mutations?
 8. Without removing N1 or PT1, add *sorted* bam files for LN1, Liv1, Lung1 onto IGV. (Right click on reads and select "squished" to see all reads.)
     * Can you find somatic mutations that arose early in the patient's cancer? Late in the cancer? How do we know?
-    * Based on IGV (if you had to guess) are either the patient's lung or liver metastases seem more closely related to the locoregional lymph node (LN) metastasis?
+    * Based on IGV (if you had to guess) do either the patient's lung or liver metastases seem more closely related to the locoregional lymph node (LN) metastasis?
     * Can you find any mutations present in multiple metastasis samples and absent in the primary tumor sample? What scenarios in cancer evolution can explain this (multiple answers!)
 
 
