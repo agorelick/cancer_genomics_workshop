@@ -93,6 +93,7 @@ samtools view -hb bams/Liv1.sam > bams/Liv1.bam; samtools sort bams/Liv1.bam > b
 samtools view -hb bams/Lun1.sam > bams/Lun1.bam; samtools sort bams/Lun1.bam > bams/Lun1_sorted.bam; samtools index bams/Lun1_sorted.bam
 samtools view -hb bams/Lun2.sam > bams/Lun2.bam; samtools sort bams/Lun2.bam > bams/Lun2_sorted.bam; samtools index bams/Lun2_sorted.bam
 samtools view -hb bams/Lun3.sam > bams/Lun3.bam; samtools sort bams/Lun3.bam > bams/Lun3_sorted.bam; samtools index bams/Lun3_sorted.bam
+
 ```
 
 
@@ -133,6 +134,7 @@ gatk Mutect2 -R GRCh38/genome_chr17_0_10Mb.fa \
 
 # quick look at the output (scroll with keyboard arrows; q to exit)
 less -RNS unfiltered.vcf
+
 ```
 1. What does a VCF file show?
 2. Where can you find the number of reads supporting each mutation's reference and alternate allele in each sample?
