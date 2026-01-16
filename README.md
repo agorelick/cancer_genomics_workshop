@@ -162,6 +162,20 @@ less -RNS filtered.vcf
 
 ## 8. Make heatmap and phylogenetic tree
 
+```r
+# install prerequisite R packages
+install.packages('pheatmap')
+install.packages('ape')
+install.packages('phytools')
+install.packages('ggplot2')
+
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("ggtree")
+```
+
+
+
 1. Let's look through the included R script `make_heatmap_and_tree.R`:
 ```
 # quick look at the R script (scroll with keyboard arrows; q to exit)
