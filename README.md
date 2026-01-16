@@ -72,6 +72,7 @@ bwa mem -t 1 -R '@RG\tID:5\tSM:Liv1' GRCh38/genome_chr17_0_10Mb fastq/Liv1_R1.fa
 bwa mem -t 1 -R '@RG\tID:6\tSM:Lun1' GRCh38/genome_chr17_0_10Mb fastq/Lun1_R1.fastq.gz fastq/Lun1_R2.fastq.gz > bams/Lun1.sam
 bwa mem -t 1 -R '@RG\tID:7\tSM:Lun2' GRCh38/genome_chr17_0_10Mb fastq/Lun2_R1.fastq.gz fastq/Lun2_R2.fastq.gz > bams/Lun2.sam
 bwa mem -t 1 -R '@RG\tID:8\tSM:Lun3' GRCh38/genome_chr17_0_10Mb fastq/Lun3_R1.fastq.gz fastq/Lun3_R2.fastq.gz > bams/Lun3.sam
+
 ```
 
 5. What is the difference between a SAM file and a FASTQ file? (see: https://en.wikipedia.org/wiki/SAM_(file_format))
