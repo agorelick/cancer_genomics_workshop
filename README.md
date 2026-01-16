@@ -19,7 +19,16 @@
 6. Activate the naxerova_workshop Conda environment: `conda activate naxerova_workshop`. You should see the text `(naxerova_workshop)` at the bottom.
 7. Download IGV (Integrative Genomics Viewer): https://igv.org/doc/desktop/#DownloadPage/
    * Select either `IGV For MacOS (Apple Chip) - Java Included` or `IGV For MacOS (Intel Chip) - Java Included`
-   
+
+
+### NEW INSTRUCGTIONS
+in terminal type:
+
+1. conda create -n cancer_genomics_workshop
+2. enter
+3. conda activate cancer_genomics_workshop
+4. conda install bioconda::bwa bioconda::gatk4 bioconda::samtools
+
 
 ### Instructions for Windows
 
